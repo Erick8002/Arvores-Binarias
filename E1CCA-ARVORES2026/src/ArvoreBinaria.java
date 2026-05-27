@@ -97,29 +97,22 @@ public class ArvoreBinaria {
                 System.out.println("Nó filho " + aux.getConteudo() + " removido com sucesso!");
                 return aux.getEsquerda();
             }
-            else { //aux = 5 , aux.getDireita = 8
-                No paiDoSucessor = aux; //paiDoSucessor = 5
-                No sucessor = aux.getDireita(); //sucessor = 8
+            else {
+                No paiDoSucessor = aux; 
+                No sucessor = aux.getDireita(); 
                 
-                // 1. Desce tudo para a esquerda para achar o nó substituto (sucessor)
-                while (sucessor.getEsquerda() != null) { //sucessor.getEsquerda = null
-                    paiDoSucessor = sucessor; //paiDoSucessor = 8 
-                    sucessor = sucessor.getEsquerda(); // sucessor = 6
+                while (sucessor.getEsquerda() != null) { 
+                    paiDoSucessor = sucessor; 
+                    sucessor = sucessor.getEsquerda(); 
                 }
                 
-                // 2. O pai do sucessor precisa "soltar" ele antes da mudança
-                if (paiDoSucessor != aux) { // paiDoSucessor = 8 e aux = 5
-                    paiDoSucessor.setEsquerda(sucessor.getDireita()); // paiDoSucessor.setEsquerda(7)
-                    // Se o sucessor tinha um filho na direita, o pai dele adota
-                    sucessor.setDireita(aux.getDireita()); //sucessor.setDireita(8)
+                if (paiDoSucessor != aux) { 
+                    paiDoSucessor.setEsquerda(sucessor.getDireita());
+                    sucessor.setDireita(aux.getDireita());
                 }
                 
-                // 3. A MÁGICA: O sucessor herda o filho da esquerda do nó que está morrendo
-                sucessor.setEsquerda(aux.getEsquerda()); //sucessor.setEsquerda(4)
-                
-                // 4. Retornamos o próprio nó sucessor!
-                // Lembra que o pai do 'aux' está esperando esse retorno? 
-                // Ao retornar o sucessor, o pai do aux passa a apontar direto para o sucessor!
+                sucessor.setEsquerda(aux.getEsquerda());
+
                 System.out.println("Nó com dois filhos " + aux.getConteudo() + " removido com sucesso!");
                 return sucessor;
             }
